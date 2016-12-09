@@ -175,7 +175,8 @@ axs.properties.hasDirectTextDescendant = function(element) {
         while (treeWalker.nextNode()) {
             var resultElement = treeWalker.currentNode;
             var parent = resultElement.parentNode;
-            var tagName = parent.tagName.toLowerCase();
+            var tagNameRaw = parent.tagName;
+            var tagName = tagNameRaw ? tagNameRaw.toLowerCase() : 'undefined';
             var value = resultElement.nodeValue.trim();
             if (value && tagName !== 'script' && element !== resultElement)
                 return true;
