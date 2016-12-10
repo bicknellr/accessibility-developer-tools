@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Generated from http://github.com/GoogleChrome/accessibility-developer-tools/tree/7d778f7da58af341a47b3a6f6457c2842b24d4d8
+ * Generated from http://github.com/GoogleChrome/accessibility-developer-tools/tree/52b7784884e94f613a00c026144a212ba8f17d5f
  *
  * See project README for build steps.
  */
@@ -607,10 +607,10 @@ goog.inherits = function(a, b) {
   a.prototype = new c;
   a.prototype.constructor = a;
   a.base = function(a, c, f) {
-    for (var g = Array(arguments.length - 2), h = 2;h < arguments.length;h++) {
-      g[h - 2] = arguments[h];
+    for (var d = Array(arguments.length - 2), e = 2;e < arguments.length;e++) {
+      d[e - 2] = arguments[e];
     }
-    return b.prototype[c].apply(a, g);
+    return b.prototype[c].apply(a, d);
   };
 };
 goog.base = function(a, b, c) {
@@ -1011,7 +1011,7 @@ axs.dom.composedTreeSearch = function(a, b, c, d, e) {
     return !0;
   }
   if (a.nodeType == Node.ELEMENT_NODE) {
-    var f = a
+    var f = a;
   }
   var g = !1;
   d = Object.create(d);
@@ -1070,7 +1070,7 @@ axs.utils.elementIsOutsideScrollArea = function(a) {
 axs.utils.canScrollTo = function(a, b) {
   var c = a.getBoundingClientRect(), d = b.getBoundingClientRect();
   if (b == b.ownerDocument.body) {
-    var e = d.top, f = d.left
+    var e = d.top, f = d.left;
   } else {
     e = d.top - b.scrollTop, f = d.left - b.scrollLeft;
   }
@@ -1126,7 +1126,7 @@ axs.utils.isLargeFont = function(a) {
   if (c) {
     b = parseInt(c[1], 10);
     if (c = window.getComputedStyle(document.body, null).fontSize.match(/(\d+)px/)) {
-      var d = parseInt(c[1], 10), c = 1.2 * d, d = 1.5 * d
+      var d = parseInt(c[1], 10), c = 1.2 * d, d = 1.5 * d;
     } else {
       c = 19.2, d = 24;
     }
@@ -1214,19 +1214,12 @@ axs.utils.isNativeTextElement = function(a) {
   }
   switch(a) {
     case "email":
-    ;
     case "number":
-    ;
     case "password":
-    ;
     case "search":
-    ;
     case "text":
-    ;
     case "tel":
-    ;
     case "url":
-    ;
     case "":
       return !0;
     default:
@@ -1275,7 +1268,7 @@ axs.utils.isElementHidden = function(a) {
     return !1;
   }
   if (a.hasAttribute("chromevoxignoreariahidden")) {
-    var b = !0
+    var b = !0;
   }
   var c = window.getComputedStyle(a, null);
   return "none" == c.display || "hidden" == c.visibility ? !0 : a.hasAttribute("aria-hidden") && "true" == a.getAttribute("aria-hidden").toLowerCase() ? !b : !1;
@@ -1330,7 +1323,6 @@ axs.utils.getAriaPropertyValue = function(a, b, c) {
       Math.floor(c.value) !== c.value ? (d.valid = !1, d.reason = "" + b + " is not a whole integer") : (d.valid = !0, d.value = c.value);
       return d;
     case "decimal":
-    ;
     case "number":
       c = axs.utils.isValidNumber(b);
       d.valid = c.valid;
@@ -1519,7 +1511,6 @@ axs.utils.getReferencedIds = function(a) {
       } else {
         switch(g) {
           case "contextmenu":
-          ;
           case "itemref":
             c(f.value);
             break;
@@ -1624,7 +1615,7 @@ axs.properties.getHiddenReason = function(a) {
     return null;
   }
   if (a.hasAttribute("chromevoxignoreariahidden")) {
-    var b = !0
+    var b = !0;
   }
   var c = window.getComputedStyle(a, null);
   return "none" == c.display ? {property:"display: none", on:a} : "hidden" == c.visibility ? {property:"visibility: hidden", on:a} : a.hasAttribute("aria-hidden") && "true" == a.getAttribute("aria-hidden").toLowerCase() && !b ? {property:"aria-hidden", on:a} : axs.properties.getHiddenReason(axs.dom.parentElement(a));
@@ -1647,7 +1638,7 @@ axs.properties.hasDirectTextDescendant = function(a) {
   c = a.nodeType == Node.DOCUMENT_NODE ? a : a.ownerDocument;
   return c.evaluate ? b() : function() {
     for (var b = c.createTreeWalker(a, NodeFilter.SHOW_TEXT, null, !1);b.nextNode();) {
-      var e = b.currentNode, f = e.parentNode.tagName.toLowerCase();
+      var e = b.currentNode, f = e.parentNode.tagName, f = f ? f.toLowerCase() : "undefined";
       if (e.nodeValue.trim() && "script" !== f && a !== e) {
         return !0;
       }
@@ -1897,17 +1888,17 @@ axs.properties.getAllProperties = function(a) {
     if (!a) {
       return null;
     }
-    var c = a.tagName;
-    if (!c) {
+    var b = a.tagName;
+    if (!b) {
       return null;
     }
-    c = c.toUpperCase();
-    c = axs.constants.TAG_TO_IMPLICIT_SEMANTIC_INFO[c];
-    if (!c || !c.length) {
+    b = b.toUpperCase();
+    b = axs.constants.TAG_TO_IMPLICIT_SEMANTIC_INFO[b];
+    if (!b || !b.length) {
       return null;
     }
-    for (var d = null, e = 0, f = c.length;e < f;e++) {
-      var g = c[e];
+    for (var d = null, e = 0, f = b.length;e < f;e++) {
+      var g = b[e];
       if (g.selector) {
         if (axs.browserUtils.matchSelector(a, g.selector)) {
           return g;
@@ -1948,10 +1939,10 @@ axs.properties.getNativelySupportedAttributes = function(a) {
     }
     var c = ['[role="' + b + '"]'];
     Object.keys(axs.constants.TAG_TO_IMPLICIT_SEMANTIC_INFO).forEach(function(a) {
-      var e = axs.constants.TAG_TO_IMPLICIT_SEMANTIC_INFO[a];
-      if (e && e.length) {
-        for (var f = 0;f < e.length;f++) {
-          var g = e[f];
+      var d = axs.constants.TAG_TO_IMPLICIT_SEMANTIC_INFO[a];
+      if (d && d.length) {
+        for (var f = 0;f < d.length;f++) {
+          var g = d[f];
           if (g.role === b) {
             if (g.selector) {
               c[c.length] = g.selector;
@@ -2046,8 +2037,8 @@ axs.AuditRules = {};
     return a[c] || b[c] || null;
   };
   axs.AuditRules.getRules = function(b) {
-    var d = Object.keys(a);
-    return b ? d : d.map(function(a) {
+    var c = Object.keys(a);
+    return b ? c : c.map(function(a) {
       return this.getRule(a);
     }, axs.AuditRules);
   };
@@ -2055,8 +2046,8 @@ axs.AuditRules = {};
     var b;
     b = a.auditRulesToRun && 0 < a.auditRulesToRun.length ? a.auditRulesToRun : axs.AuditRules.getRules(!0);
     if (a.auditRulesToIgnore) {
-      for (var e = 0;e < a.auditRulesToIgnore.length;e++) {
-        var f = a.auditRulesToIgnore[e];
+      for (var c = 0;c < a.auditRulesToIgnore.length;c++) {
+        var f = a.auditRulesToIgnore[c];
         0 > b.indexOf(f) || b.splice(b.indexOf(f), 1);
       }
     }
@@ -2170,12 +2161,12 @@ axs.Audit.run = function(a) {
 goog.exportSymbol("axs.Audit.run", axs.Audit.run);
 (function() {
   function a(a, c) {
-    var d = a.getIgnoreSelectors(c.name);
-    if (0 < d.length || a.scope) {
-      this.ignoreSelectors = d;
+    var b = a.getIgnoreSelectors(c.name);
+    if (0 < b.length || a.scope) {
+      this.ignoreSelectors = b;
     }
-    if (d = a.getRuleConfig(c.name)) {
-      this.config = d;
+    if (b = a.getRuleConfig(c.name)) {
+      this.config = b;
     }
   }
   axs.Audit.collectMatchingElements = function(b, c) {
@@ -2189,10 +2180,10 @@ goog.exportSymbol("axs.Audit.run", axs.Audit.run);
     }}, {walkDom:b.walkDom, collectIdRefs:b.collectIdRefs, level:0, ignoring:{}, disabled:!1, hidden:!1});
   };
   a.prototype.shouldIgnore = function(a) {
-    var c = this.ignoreSelectors;
-    if (c) {
-      for (var d = 0;d < c.length;d++) {
-        if (axs.browserUtils.matchSelector(a, c[d])) {
+    var b = this.ignoreSelectors;
+    if (b) {
+      for (var d = 0;d < b.length;d++) {
+        if (axs.browserUtils.matchSelector(a, b[d])) {
           return !0;
         }
       }
@@ -2535,8 +2526,8 @@ axs.AuditRules.addRule({name:"tabIndexGreaterThanZero", heading:"Avoid positive 
     }
     if ("presentation" == a.getAttribute("role")) {
       a = a.querySelectorAll("*");
-      for (var c = 0;c < a.length;c++) {
-        if ("TR" != a[c].tagName && "TD" != a[c].tagName) {
+      for (var b = 0;b < a.length;b++) {
+        if ("TR" != a[b].tagName && "TD" != a[b].tagName) {
           return !1;
         }
       }
@@ -2548,47 +2539,47 @@ axs.AuditRules.addRule({name:"tabIndexGreaterThanZero", heading:"Avoid positive 
     return axs.browserUtils.matchSelector(b, "table") && !a(b) && 0 < b.querySelectorAll("tr").length;
   }, test:function(a) {
     a = a.querySelectorAll("tr");
-    var c;
+    var b;
     a: {
-      c = a[0].children;
-      for (var d = 0;d < c.length;d++) {
-        if ("TH" != c[d].tagName) {
-          c = !0;
+      b = a[0].children;
+      for (var d = 0;d < b.length;d++) {
+        if ("TH" != b[d].tagName) {
+          b = !0;
           break a;
         }
       }
-      c = !1;
+      b = !1;
     }
-    if (c) {
+    if (b) {
       a: {
-        for (c = 0;c < a.length;c++) {
-          if ("TH" != a[c].children[0].tagName) {
-            c = !0;
+        for (b = 0;b < a.length;b++) {
+          if ("TH" != a[b].children[0].tagName) {
+            b = !0;
             break a;
           }
         }
-        c = !1;
+        b = !1;
       }
     }
-    if (c) {
+    if (b) {
       a: {
-        c = a[0].children;
-        for (d = 1;d < c.length;d++) {
-          if ("TH" != c[d].tagName) {
-            c = !0;
+        b = a[0].children;
+        for (d = 1;d < b.length;d++) {
+          if ("TH" != b[d].tagName) {
+            b = !0;
             break a;
           }
         }
         for (d = 1;d < a.length;d++) {
           if ("TH" != a[d].children[0].tagName) {
-            c = !0;
+            b = !0;
             break a;
           }
         }
-        c = !1;
+        b = !1;
       }
     }
-    return c;
+    return b;
   }, code:"AX_TABLE_01"});
 })();
 (function() {
@@ -2611,13 +2602,13 @@ axs.AuditRules.addRule({name:"unfocusableElementsWithOnClick", heading:"Elements
   axs.AuditRules.addRule({name:"unsupportedAriaAttribute", heading:"This element has an unsupported ARIA attribute", url:"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_10", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(a) {
     return axs.browserUtils.matchSelector(a, b);
   }, test:function(b) {
-    var d = axs.utils.getRoles(b, !0), d = d && d.applied ? d.applied.details.propertiesSet : axs.constants.GLOBAL_PROPERTIES;
+    var c = axs.utils.getRoles(b, !0), c = c && c.applied ? c.applied.details.propertiesSet : axs.constants.GLOBAL_PROPERTIES;
     b = b.attributes;
     for (var e = 0, f = b.length;e < f;e++) {
       var g = b[e].name;
       if (a.test(g)) {
         var h = g.replace(a, "");
-        if (axs.constants.ARIA_PROPERTIES.hasOwnProperty(h) && !(g in d)) {
+        if (axs.constants.ARIA_PROPERTIES.hasOwnProperty(h) && !(g in c)) {
           return !0;
         }
       }
